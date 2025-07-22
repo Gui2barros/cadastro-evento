@@ -1,108 +1,142 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cadastro para Sorteio - Golden Motos</title>
+  <title>Cadastro - Golden Motos</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      background-color: #f8f8f8;
       margin: 0;
       padding: 20px;
       display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: flex-start;
       min-height: 100vh;
     }
 
     .container {
-      background-color: white;
-      padding: 25px;
+      background-color: #fff;
+      padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
       width: 100%;
       max-width: 400px;
     }
 
     .logo {
-      width: 100%;
-      max-width: 200px;
-      margin: 0 auto 20px;
-      display: block;
-    }
-
-    h1 {
       text-align: center;
-      color: #E60012;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #333;
       margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 150px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #c00000;
+    }
+
+    p {
+      text-align: center;
       font-size: 0.95rem;
+      margin-top: -10px;
+      margin-bottom: 20px;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      align-items: center;
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="number"] {
+    form input {
       width: 100%;
       padding: 12px;
+      margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 12px;
       font-size: 1rem;
-      box-sizing: border-box;
     }
 
-    button {
-      background-color: #E60012;
-      color: white;
-      border: none;
-      padding: 12px;
+    form button {
       width: 100%;
+      padding: 12px;
+      background-color: #c00000;
+      color: #fff;
+      border: none;
       border-radius: 12px;
       font-size: 1rem;
       cursor: pointer;
+      margin-top: 10px;
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
-      background-color: #c50010;
+    form button:hover {
+      background-color: #a00000;
     }
 
     @media (max-width: 500px) {
       .container {
         padding: 20px;
-        border-radius: 16px;
       }
     }
   </style>
+
+  <script>
+    // Máscara para CPF
+    function formatCPF(input) {
+      input.value = input.value
+        .replace(/\D/g, "")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    }
+
+    // Máscara para celular
+    function formatPhone(input) {
+      input.value = input.value
+        .replace(/\D/g, "")
+        .replace(/^(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{5})(\d{4})$/, "$1-$2");
+    }
+
+    // Alerta de sucesso
+    function confirmarEnvio() {
+      alert("Cadastro enviado com sucesso! Boa sorte no sorteio do brinde 🎁");
+    }
+  </script>
 </head>
 <body>
   <div class="container">
-    
-    <h1>Participe e Ganhe!</h1>
-    <p class="subtitle">Cadastre-se e concorra a brindes incríveis!</p>
+   
+    <h2>Cadastre-se e concorra a um brinde!</h2>
+    <p>Preencha seus dados para participar do sorteio exclusivo do evento.</p>
 
-    <form action="https://formsubmit.co/crm@goldenmotos.com" method="POST">
+    <form action="https://formsubmit.co/crm@goldenmotos.com" method="POST" onsubmit="confirmarEnvio()">
+      <!-- Substitua SEU_EMAIL_AQUI pelo e-mail real -->
+      
+      <input type="text" name="nome" placeholder="Seu nome completo" required autocomplete="name" />
+
+      <input type="text" name="cpf" placeholder="Digite seu CPF"
+             oninput="formatCPF(this)" maxlength="14" required autocomplete="on" />
+
+      <input type="text" name="celular" placeholder="Digite seu celular"
+             oninput="formatPhone(this)" maxlength="15" required autocomplete="tel" />
+
+      <input type="email" name="email" placeholder="Digite seu e-mail" required autocomplete="email" />
+
+      <!-- Anti-bot -->
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://golden-motos.vercel.app/obrigado.html">
+      <input type="hidden" name="_next" value="https://goldenmotos.vercel.app/obrigado.html" />
 
-      <input type="text" name="nome" placeholder="Nome completo" required />
-      <input type="number" name="cpf" placeholder="CPF" required />
-      <input type="tel" name="celular" placeholder="Celular com DDD" required />
-      <input type="email" name="email" placeholder="E-mail" required />
-
-      <button type="submit">Enviar Cadastro</button>
+      <button type="submit">Enviar</button>
     </form>
   </div>
 </body>
