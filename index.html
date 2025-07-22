@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro para Sorteio - Golden Motos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    h1 {
+      text-align: center;
+      color: #E60012;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #E60012;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #c50010;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <h1>Participe e Ganhe!</h1>
+    <p class="subtitle">Cadastre-se e concorra a brindes incríveis!</p>
+
+    <form action="https://formsubmit.co/SEUEMAILAQUI" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://golden-motos.vercel.app/obrigado.html">
+
+      <input type="text" name="nome" placeholder="Nome completo" required />
+      <input type="number" name="cpf" placeholder="CPF" required />
+      <input type="tel" name="celular" placeholder="Celular com DDD" required />
+      <input type="email" name="email" placeholder="E-mail" required />
+
+      <button type="submit">Enviar Cadastro</button>
+    </form>
+  </div>
+</body>
+</html>
